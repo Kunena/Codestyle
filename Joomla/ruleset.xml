@@ -209,5 +209,4 @@
 
 	<!-- Include some additional sniffs from the Zend standard -->
 	<rule ref="Zend.Files.ClosingTag" />
-
 </ruleset>
