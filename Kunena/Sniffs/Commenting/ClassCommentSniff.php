@@ -6,7 +6,7 @@
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
-if (class_exists('Joomla_Sniffs_Commenting_FileCommentSniff', true) === false)
+if (class_exists('Kunena_Sniffs_Commenting_FileCommentSniff', true) === false)
 {
 	throw new PHP_CodeSniffer_Exception('class Kunena_Sniffs_Commenting_FileCommentSniff not found');
 }
@@ -17,7 +17,7 @@ if (class_exists('Joomla_Sniffs_Commenting_FileCommentSniff', true) === false)
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_Sniffs_Commenting_ClassCommentSniff extends Joomla_Sniffs_Commenting_FileCommentSniff
+class Kunena_Sniffs_Commenting_ClassCommentSniff extends Kunena_Sniffs_Commenting_FileCommentSniff
 {
 	/**
 	 * Tags in correct order and related info.
