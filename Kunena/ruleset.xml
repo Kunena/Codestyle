@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="Kunena">
-	<description>The Joomla coding standard.</description>
+	<description>The Kunena coding standard.</description>
 
 	<!-- hard-code command line values into the standard to fix tabs vs spaces issue, etc -->
 	<arg name="report" value="full"/>
