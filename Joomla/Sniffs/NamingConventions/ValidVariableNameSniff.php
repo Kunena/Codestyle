@@ -17,7 +17,7 @@ if (class_exists('Squiz_Sniffs_NamingConventions_ValidVariableNameSniff', true) 
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_NamingConventions_ValidVariableNameSniff extends Squiz_Sniffs_NamingConventions_ValidVariableNameSniff
+class Joomla_Sniffs_NamingConventions_ValidVariableNameSniff extends Squiz_Sniffs_NamingConventions_ValidVariableNameSniff
 {
 	/**
 	 * Processes class member variables.

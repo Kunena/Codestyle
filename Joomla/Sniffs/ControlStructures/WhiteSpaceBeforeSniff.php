@@ -55,7 +55,7 @@
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_Sniffs_ControlStructures_WhiteSpaceBeforeSniff implements PHP_CodeSniffer_Sniff
+class Joomla_Sniffs_ControlStructures_WhiteSpaceBeforeSniff implements PHP_CodeSniffer_Sniff
 {
 	/**
 	 * Registers the tokens that this sniff wants to listen for.

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Kunena">
-	<description>The Kunena coding standard.</description>
+<ruleset name="Joomla">
+	<description>The Joomla coding standard.</description>
 
 	<!-- hard-code command line values into the standard to fix tabs vs spaces issue, etc -->
 	<arg name="report" value="full"/>
@@ -23,19 +23,19 @@
 	<rule ref="Generic.ControlStructures.InlineControlStructure" />
 	<rule ref="Generic.Files.EndFileNewline" />
 
-	<rule ref="Kunena.NamingConventions.ValidVariableNameSniff">
-		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.ClassVarHasUnderscore"/>
-		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.MemberNotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.NotCamelCaps"/>
+	<rule ref="Joomla.NamingConventions.ValidVariableName">
+		<exclude name="Joomla.NamingConventions.ValidVariableName.ClassVarHasUnderscore"/>
+		<exclude name="Joomla.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
+		<exclude name="Joomla.NamingConventions.ValidVariableName.NotCamelCaps"/>
 	</rule>
 
-	<rule ref="Kunena.NamingConventions.ValidFunctionNameSniff">
-		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.FunctionNoCapital"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.MethodUnderscore"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.ScopeNotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.ScopeNotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.NotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.StringNotCamelCaps"/>
+	<rule ref="Joomla.NamingConventions.ValidFunctionName">
+		<exclude name="Joomla.NamingConventions.ValidFunctionName.FunctionNoCapital"/>
+		<exclude name="Joomla.NamingConventions.ValidFunctionName.MethodUnderscore"/>
+		<exclude name="Joomla.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"/>
+		<exclude name="Joomla.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"/>
+		<exclude name="Joomla.NamingConventions.ValidFunctionName.NotCamelCaps"/>
+		<exclude name="Joomla.NamingConventions.ValidVariableName.StringNotCamelCaps"/>
 	</rule>
 
 	<rule ref="Generic.Files.LineEndings">

@@ -17,7 +17,7 @@ if (false === class_exists('Squiz_Sniffs_WhiteSpace_MemberVarSpacingSniff', true
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_Sniffs_WhiteSpace_MemberVarSpacingSniff extends Squiz_Sniffs_WhiteSpace_MemberVarSpacingSniff
+class Joomla_Sniffs_WhiteSpace_MemberVarSpacingSniff extends Squiz_Sniffs_WhiteSpace_MemberVarSpacingSniff
 {
 	/**
 	 * Processes the function tokens within the class.
