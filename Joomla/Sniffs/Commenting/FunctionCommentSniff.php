@@ -17,7 +17,7 @@ if (class_exists('PEAR_Sniffs_Commenting_FunctionCommentSniff', true) === false)
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenting_FunctionCommentSniff
+class Joomla_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenting_FunctionCommentSniff
 {
 	/**
 	 * Process the return comment of this function comment.

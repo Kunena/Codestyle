@@ -19,7 +19,7 @@
  *
  * @since  1.0
  */
-class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
+class Joomla_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 {
 	/**
 	 * Tags in correct order and related info.

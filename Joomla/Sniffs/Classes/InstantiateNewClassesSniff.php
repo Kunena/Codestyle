@@ -12,7 +12,7 @@
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_Sniffs_Classes_InstantiateNewClassesSniff implements PHP_CodeSniffer_Sniff
+class Joomla_Sniffs_Classes_InstantiateNewClassesSniff implements PHP_CodeSniffer_Sniff
 {
 	/**
 	 * If true, short Array Syntax for php 5.4+ will be allow for Instantiating New Classes if they are found in the code.

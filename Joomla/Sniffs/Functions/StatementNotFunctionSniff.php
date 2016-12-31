@@ -14,7 +14,7 @@
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_Sniffs_Functions_StatementNotFunctionSniff implements PHP_CodeSniffer_Sniff
+class Joomla_Sniffs_Functions_StatementNotFunctionSniff implements PHP_CodeSniffer_Sniff
 {
 	/**
 	 * Returns an array of tokens this test wants to listen for.

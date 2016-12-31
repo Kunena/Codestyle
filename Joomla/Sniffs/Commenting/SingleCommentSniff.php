@@ -12,7 +12,7 @@
  * @package   Joomla.CodingStandard
  * @since     1.0
  */
-class Kunena_Sniffs_Commenting_SingleCommentSniff implements PHP_CodeSniffer_Sniff
+class Joomla_Sniffs_Commenting_SingleCommentSniff implements PHP_CodeSniffer_Sniff
 {
 	/**
 	 * Returns an array of tokens this test wants to listen for.

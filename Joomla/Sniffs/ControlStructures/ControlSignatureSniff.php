@@ -18,7 +18,7 @@
  *
  * @since   1.0
  */
-class Kunena_Sniffs_ControlStructures_ControlSignatureSniff implements PHP_CodeSniffer_Sniff
+class Joomla_Sniffs_ControlStructures_ControlSignatureSniff implements PHP_CodeSniffer_Sniff
 {
 	/**
 	 * The number of spaces code should be indented.
