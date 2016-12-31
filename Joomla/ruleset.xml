@@ -23,19 +23,19 @@
 	<rule ref="Generic.ControlStructures.InlineControlStructure" />
 	<rule ref="Generic.Files.EndFileNewline" />
 
-	<rule ref="Kunena.NamingConventions.ValidVariableName">
-		<exclude name="Kunena.NamingConventions.ValidVariableName.ClassVarHasUnderscore"/>
-		<exclude name="Kunena.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidVariableName.NotCamelCaps"/>
+	<rule ref="Kunena.NamingConventions.ValidVariableNameSniff">
+		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.ClassVarHasUnderscore"/>
+		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.MemberNotCamelCaps"/>
+		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.NotCamelCaps"/>
 	</rule>
 
-	<rule ref="Kunena.NamingConventions.ValidFunctionName">
-		<exclude name="Kunena.NamingConventions.ValidFunctionName.FunctionNoCapital"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionName.MethodUnderscore"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidFunctionName.NotCamelCaps"/>
-		<exclude name="Kunena.NamingConventions.ValidVariableName.StringNotCamelCaps"/>
+	<rule ref="Kunena.NamingConventions.ValidFunctionNameSniff">
+		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.FunctionNoCapital"/>
+		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.MethodUnderscore"/>
+		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.ScopeNotCamelCaps"/>
+		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.ScopeNotCamelCaps"/>
+		<exclude name="Kunena.NamingConventions.ValidFunctionNameSniff.NotCamelCaps"/>
+		<exclude name="Kunena.NamingConventions.ValidVariableNameSniff.StringNotCamelCaps"/>
 	</rule>
 
 	<rule ref="Generic.Files.LineEndings">
