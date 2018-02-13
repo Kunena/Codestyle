@@ -39,7 +39,7 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 										'order_text'     => 'precedes @package',
 										),
 						'@package'    => array(
-										'required'       => true,
+										'required'       => false,
 										'allow_multiple' => false,
 										'order_text'     => 'must follows @category (if used)',
 										),
@@ -60,7 +60,7 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 										),
 						'@license'    => array(
 										'required'       => true,
-										'allow_multiple' => true,
+										'allow_multiple' => false,
 										'order_text'     => 'must follow @copyright',
 										),
 						'@link'       => array(
