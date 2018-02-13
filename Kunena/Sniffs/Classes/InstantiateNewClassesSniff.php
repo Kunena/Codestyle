@@ -2,6 +2,7 @@
 /**
  * Joomla! Coding Standard
  *
+ * @package    Joomla.CodingStandard
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
@@ -9,7 +10,6 @@
 /**
  * Ensures that new classes are instantiated without brackets if they do not have any parameters.
  *
- * @package   Joomla.CodingStandard
  * @since     1.0
  */
 class Kunena_Sniffs_Classes_InstantiateNewClassesSniff implements PHP_CodeSniffer_Sniff
@@ -100,7 +100,7 @@ class Kunena_Sniffs_Classes_InstantiateNewClassesSniff implements PHP_CodeSniffe
 						break;
 
 					case T_OPEN_SHORT_ARRAY :
-						if ($shortArraySyntax === true)
+						if ($this->shortArraySyntax === true)
 						{
 							if ($started === true)
 							{
@@ -129,6 +129,7 @@ class Kunena_Sniffs_Classes_InstantiateNewClassesSniff implements PHP_CodeSniffe
 						T_WHITESPACE,
 						T_NS_SEPARATOR,
 						T_STRING,
+						T_SELF,
 					),
 					($stackPtr + 1),
 					null,

@@ -2,19 +2,19 @@
 /**
  * Joomla! Coding Standard
  *
+ * @package    Joomla.CodingStandard
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
 if (class_exists('Kunena_Sniffs_Commenting_FileCommentSniff', true) === false)
 {
-	throw new PHP_CodeSniffer_Exception('class Kunena_Sniffs_Commenting_FileCommentSniff not found');
+	throw new PHP_CodeSniffer_Exception('Class Kunena_Sniffs_Commenting_FileCommentSniff not found');
 }
 
 /**
  * Parses and verifies the doc comments for classes.
  *
- * @package   Joomla.CodingStandard
  * @since     1.0
  */
 class Kunena_Sniffs_Commenting_ClassCommentSniff extends Kunena_Sniffs_Commenting_FileCommentSniff

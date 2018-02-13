@@ -2,6 +2,7 @@
 /**
  * Joomla! Coding Standard
  *
+ * @package    Joomla.CodingStandard
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
@@ -14,7 +15,6 @@ if (false === class_exists('Squiz_Sniffs_WhiteSpace_MemberVarSpacingSniff', true
 /**
  * Verifies that class members are spaced correctly.
  *
- * @package   Joomla.CodingStandard
  * @since     1.0
  */
 class Kunena_Sniffs_WhiteSpace_MemberVarSpacingSniff extends Squiz_Sniffs_WhiteSpace_MemberVarSpacingSniff
@@ -55,6 +55,12 @@ class Kunena_Sniffs_WhiteSpace_MemberVarSpacingSniff extends Squiz_Sniffs_WhiteS
 					if ($fix === true)
 					{
 						$phpcsFile->fixer->beginChangeset();
+
+						// Inline comments have the newline included in the content but docblock do not.
+						if ($tokens[$prev]['code'] === T_COMMENT)
+						{
+							$phpcsFile->fixer->replaceToken($prev, rtrim($tokens[$prev]['content']));
+						}
 
 						for ($i = ($prev + 1); $i <= $stackPtr; $i++)
 						{
