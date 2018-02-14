@@ -147,7 +147,7 @@ class Kunena_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenti
 						{
 							if ($tokens[$returnToken]['code'] === T_CLOSURE
 								|| $tokens[$returnToken]['code'] === T_ANON_CLASS
-								)
+							)
 							{
 								$returnToken = $tokens[$returnToken]['scope_closer'];
 								continue;
@@ -156,7 +156,7 @@ class Kunena_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenti
 							if ($tokens[$returnToken]['code'] === T_RETURN
 								|| $tokens[$returnToken]['code'] === T_YIELD
 								|| $tokens[$returnToken]['code'] === T_YIELD_FROM
-								)
+							)
 							{
 								break;
 							}
@@ -186,7 +186,7 @@ class Kunena_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenti
 						{
 							if ($tokens[$returnToken]['code'] === T_CLOSURE
 								|| $tokens[$returnToken]['code'] === T_ANON_CLASS
-								)
+							)
 							{
 								$returnToken = $tokens[$returnToken]['scope_closer'];
 								continue;
@@ -195,7 +195,7 @@ class Kunena_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenti
 							if ($tokens[$returnToken]['code'] === T_RETURN
 								|| $tokens[$returnToken]['code'] === T_YIELD
 								|| $tokens[$returnToken]['code'] === T_YIELD_FROM
-								)
+							)
 							{
 								break;
 							}
@@ -318,7 +318,13 @@ class Kunena_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenti
 					else
 					{
 						$error = 'Missing parameter comment';
-						$phpcsFile->addError($error, $tag, 'MissingParamComment');
+						$fix = $phpcsFile->addFixableError($error, $tag, 'MissingParamComment');
+
+						if ($fix === true)
+						{
+							$content = $type . ' ' . $var . ' ' . substr($var, 1);
+							$phpcsFile->fixer->replaceToken(($tag + 2), $content);
+						}
 					}
 				}
 				else
