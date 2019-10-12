@@ -6,16 +6,20 @@
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
+namespace Kunena\Sniffs\Operators;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
 
 /**
- * Kunena_Sniffs_Operators_ValidLogicalOperatorsSniff
+ * Joomla_Sniffs_Operators_ValidLogicalOperatorsSniff
  *
  * Check to ensure that the logical operators 'and' and 'or' are not used.
  * Use the && and || operators instead.
  *
  * @since     1.0
  */
-class Kunena_Sniffs_Operators_ValidLogicalOperatorsSniff implements PHP_CodeSniffer_Sniff
+class ValidLogicalOperatorsSniff implements Sniff
 {
 	/**
 	 * Returns an array of tokens this test wants to listen for.
@@ -25,26 +29,26 @@ class Kunena_Sniffs_Operators_ValidLogicalOperatorsSniff implements PHP_CodeSnif
 	public function register()
 	{
 		return array(
-				T_LOGICAL_AND,
-				T_LOGICAL_OR,
-			   );
+			T_LOGICAL_AND,
+			T_LOGICAL_OR,
+		);
 	}
 
 	/**
 	 * Processes this test, when one of its tokens is encountered.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The current file being scanned.
-	 * @param   int                   $stackPtr   The position of the current token in the stack passed in $tokens.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The current file being scanned.
+	 * @param   int                         $stackPtr   The position of the current token in the stack passed in $tokens.
 	 *
 	 * @return  void
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens    = $phpcsFile->getTokens();
 		$operators = array(
-					  'and' => '&&',
-					  'or'  => '||',
-					 );
+			'and' => '&&',
+			'or'  => '||',
+		);
 		$operator  = strtolower($tokens[$stackPtr]['content']);
 
 		if (false === isset($operators[$operator]))
@@ -75,9 +79,9 @@ class Kunena_Sniffs_Operators_ValidLogicalOperatorsSniff implements PHP_CodeSnif
 
 		$error = 'Logical operator "%s" not allowed; use "%s" instead';
 		$data  = array(
-				  $operator,
-				  $operators[$operator],
-				 );
+			$operator,
+			$operators[$operator],
+		);
 		$fix   = $phpcsFile->addFixableError($error, $stackPtr, 'NotAllowed', $data);
 
 		if (true === $fix)

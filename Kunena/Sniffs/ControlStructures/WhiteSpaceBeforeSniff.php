@@ -6,6 +6,10 @@
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
+namespace Kunena\Sniffs\ControlStructures;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
 
 /**
  * White space before a control structure.
@@ -55,7 +59,7 @@
  *
  * @since     1.0
  */
-class Kunena_Sniffs_ControlStructures_WhiteSpaceBeforeSniff implements PHP_CodeSniffer_Sniff
+class WhiteSpaceBeforeSniff implements Sniff
 {
 	/**
 	 * Registers the tokens that this sniff wants to listen for.
@@ -65,26 +69,26 @@ class Kunena_Sniffs_ControlStructures_WhiteSpaceBeforeSniff implements PHP_CodeS
 	public function register()
 	{
 		return array(
-				T_IF,
-				T_FOR,
-				T_FOREACH,
-				T_SWITCH,
-				T_TRY,
-				T_WHILE,
-				T_DO,
-				T_RETURN,
-			   );
+			T_IF,
+			T_FOR,
+			T_FOREACH,
+			T_SWITCH,
+			T_TRY,
+			T_WHILE,
+			T_DO,
+			T_RETURN,
+		);
 	}
 
 	/**
 	 * Processes this test, when one of its tokens is encountered.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   integer               $stackPtr   The position of the current token in the stack passed in $tokens.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   integer                     $stackPtr   The position of the current token in the stack passed in $tokens.
 	 *
 	 * @return  void
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens = $phpcsFile->getTokens();
 

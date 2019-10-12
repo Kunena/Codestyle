@@ -6,6 +6,11 @@
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
+namespace Kunena\Sniffs\Commenting;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Common;
 
 /**
  * Parses and verifies the doc comments for files.
@@ -20,7 +25,7 @@
  *
  * @since  1.0
  */
-class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
+class FileCommentSniff implements Sniff
 {
 	/**
 	 * Tags in correct order and related info.
@@ -28,62 +33,62 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	 * @var array
 	 */
 	protected $tags = array(
-						'@version'   => array(
-										'required'       => false,
-										'allow_multiple' => false,
-										'order_text'     => 'must be first',
-										),
-						'@category'   => array(
-										'required'       => false,
-										'allow_multiple' => false,
-										'order_text'     => 'precedes @package',
-										),
-						'@package'    => array(
-										'required'       => false,
-										'allow_multiple' => false,
-										'order_text'     => 'must follows @category (if used)',
-										),
-						'@subpackage' => array(
-										'required'       => false,
-										'allow_multiple' => false,
-										'order_text'     => 'must follow @package',
-										),
-						'@author'     => array(
-										'required'       => false,
-										'allow_multiple' => true,
-										'order_text'     => 'must follow @subpackage (if used) or @package',
-										),
-						'@copyright'  => array(
-										'required'       => true,
-										'allow_multiple' => true,
-										'order_text'     => 'must follow @author (if used), @subpackage (if used) or @package',
-										),
-						'@license'    => array(
-										'required'       => true,
-										'allow_multiple' => false,
-										'order_text'     => 'must follow @copyright',
-										),
-						'@link'       => array(
-										'required'       => false,
-										'allow_multiple' => true,
-										'order_text'     => 'must follow @license',
-										),
-						'@see'        => array(
-										'required'       => false,
-										'allow_multiple' => true,
-										'order_text'     => 'must follow @link (if used) or @license',
-										),
-						'@since'      => array(
-										'required'       => false,
-										'allow_multiple' => false,
-										'order_text'     => 'must follows @see (if used), @link (if used) or @license',
-										),
-						'@deprecated' => array(
-										'required'       => false,
-										'allow_multiple' => false,
-										'order_text'     => 'must follow @since (if used), @see (if used), @link (if used) or @license',
-										),
-					);
+		'@version'   => array(
+			'required'       => false,
+			'allow_multiple' => false,
+			'order_text'     => 'must be first',
+		),
+		'@category'   => array(
+			'required'       => false,
+			'allow_multiple' => false,
+			'order_text'     => 'precedes @package',
+		),
+		'@package'    => array(
+			'required'       => false,
+			'allow_multiple' => false,
+			'order_text'     => 'must follows @category (if used)',
+		),
+		'@subpackage' => array(
+			'required'       => false,
+			'allow_multiple' => false,
+			'order_text'     => 'must follow @package',
+		),
+		'@author'     => array(
+			'required'       => false,
+			'allow_multiple' => true,
+			'order_text'     => 'must follow @subpackage (if used) or @package',
+		),
+		'@copyright'  => array(
+			'required'       => true,
+			'allow_multiple' => true,
+			'order_text'     => 'must follow @author (if used), @subpackage (if used) or @package',
+		),
+		'@license'    => array(
+			'required'       => true,
+			'allow_multiple' => false,
+			'order_text'     => 'must follow @copyright',
+		),
+		'@link'       => array(
+			'required'       => false,
+			'allow_multiple' => true,
+			'order_text'     => 'must follow @license',
+		),
+		'@see'        => array(
+			'required'       => false,
+			'allow_multiple' => true,
+			'order_text'     => 'must follow @link (if used) or @license',
+		),
+		'@since'      => array(
+			'required'       => false,
+			'allow_multiple' => false,
+			'order_text'     => 'must follows @see (if used), @link (if used) or @license',
+		),
+		'@deprecated' => array(
+			'required'       => false,
+			'allow_multiple' => false,
+			'order_text'     => 'must follow @since (if used), @see (if used), @link (if used) or @license',
+		),
+	);
 
 	/**
 	 * A list of tokenizers this sniff supports.
@@ -91,9 +96,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	 * @var array
 	 */
 	public $supportedTokenizers = array(
-									'PHP',
-									'JS',
-									);
+		'PHP',
+		'JS',
+	);
 
 	/**
 	 * The header comment parser for the current file.
@@ -122,12 +127,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Processes this test, when one of its tokens is encountered.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   int                   $stackPtr   The position of the current token in the stack passed in $tokens.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   int                         $stackPtr   The position of the current token in the stack passed in $tokens.
 	 *
 	 * @return  integer
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -199,18 +204,18 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Processes each required or optional tag.
 	 *
-	 * @param   PHP_CodeSniffer_File $phpcsFile    The file being scanned.
-	 * @param   int                  $stackPtr     The position of the current token
-	 *                                           in the stack passed in $tokens.
-	 * @param   int                  $commentStart Position in the stack where the comment started.
+	 * @param   PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+	 * @param   int                        $stackPtr     The position of the current token
+	 *                                                   in the stack passed in $tokens.
+	 * @param   int                        $commentStart Position in the stack where the comment started.
 	 *
 	 * @return  void
 	 */
-	protected function processTags(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $commentStart)
+	protected function processTags(File $phpcsFile, $stackPtr, $commentStart)
 	{
 		$tokens = $phpcsFile->getTokens();
 
-		if (get_class($this) === 'Kunena_Sniffs_Commenting_FileCommentSniff')
+		if (get_class($this) === 'FileCommentSniff')
 		{
 			$docBlock = 'file';
 		}
@@ -236,9 +241,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 			{
 				$error = 'Only one %s tag is allowed in a %s comment';
 				$data  = array(
-						  $name,
-						  $docBlock,
-						 );
+					$name,
+					$docBlock,
+				);
 				$phpcsFile->addError($error, $tag, 'Duplicate' . ucfirst(substr($name, 1)) . 'Tag', $data);
 			}
 
@@ -250,9 +255,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 			{
 				$error = 'Content missing for %s tag in %s comment';
 				$data  = array(
-						  $name,
-						  $docBlock,
-						 );
+					$name,
+					$docBlock,
+				);
 				$phpcsFile->addError($error, $tag, 'Empty' . ucfirst(substr($name, 1)) . 'Tag', $data);
 				continue;
 			}
@@ -282,9 +287,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 
 					$error = 'Missing %s tag in %s comment';
 					$data  = array(
-							  $tag,
-							  $docBlock,
-							 );
+						$tag,
+						$docBlock,
+					);
 					$phpcsFile->addError($error, $commentEnd, 'Missing' . ucfirst(substr($tag, 1)) . 'Tag', $data);
 				}
 
@@ -310,9 +315,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 			{
 				$error = 'The tag in position %s should be the %s tag';
 				$data  = array(
-						  ($pos + 1),
-						  $tag,
-						 );
+					($pos + 1),
+					$tag,
+				);
 				$phpcsFile->addError($error, $tokens[$commentStart]['comment_tags'][$pos], ucfirst(substr($tag, 1)) . 'TagOrder', $data);
 			}
 
@@ -329,12 +334,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Process the category tag.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   array                 $tags       The tokens for these tags.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   array                       $tags       The tokens for these tags.
 	 *
 	 * @return  void
 	 */
-	protected function processCategory(PHP_CodeSniffer_File $phpcsFile, array $tags)
+	protected function processCategory(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -348,7 +353,7 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 
 			$content = $tokens[($tag + 2)]['content'];
 
-			if (PHP_CodeSniffer::isUnderscoreName($content) !== true)
+			if (Common::isUnderscoreName($content) !== true)
 			{
 				$newContent = str_replace(' ', '_', $content);
 				$nameBits   = explode('_', $newContent);
@@ -366,9 +371,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 				$error     = 'Category name "%s" is not valid; consider "%s" instead';
 				$validName = trim($newName, '_');
 				$data      = array(
-							  $content,
-							  $validName,
-							 );
+					$content,
+					$validName,
+				);
 				$phpcsFile->addError($error, $tag, 'InvalidCategory', $data);
 			}
 		}//end foreach
@@ -377,12 +382,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Process the package tag.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   array                 $tags       The tokens for these tags.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   array                       $tags       The tokens for these tags.
 	 *
 	 * @return  void
 	 */
-	protected function processPackage(PHP_CodeSniffer_File $phpcsFile, array $tags)
+	protected function processPackage(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -396,7 +401,7 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 
 			$content = $tokens[($tag + 2)]['content'];
 
-			if (PHP_CodeSniffer::isUnderscoreName($content) === true)
+			if (Common::isUnderscoreName($content) === true)
 			{
 				continue;
 			}
@@ -428,9 +433,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 				$error     = 'Package name "%s" is not valid; consider "%s" instead';
 				$validName = trim($newName, '_');
 				$data      = array(
-							  $content,
-							  $validName,
-							 );
+					$content,
+					$validName,
+				);
 				$phpcsFile->addError($error, $tag, 'InvalidPackage', $data);
 			}//end if
 		}//end foreach
@@ -439,12 +444,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Process the subpackage tag.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   array                 $tags       The tokens for these tags.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   array                       $tags       The tokens for these tags.
 	 *
 	 * @return  void
 	 */
-	protected function processSubpackage(PHP_CodeSniffer_File $phpcsFile, array $tags)
+	protected function processSubpackage(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -470,12 +475,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Process the author tag(s) that this header comment has.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   array                 $tags       The tokens for these tags.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   array                       $tags       The tokens for these tags.
 	 *
 	 * @return  void
 	 */
-	protected function processAuthor(PHP_CodeSniffer_File $phpcsFile, array $tags)
+	protected function processAuthor(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -494,9 +499,9 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 			$localMiddle = $local . '.\w';
 
 			if (preg_match(
-				'/^([^<]*)\s+<([' . $local . ']([' . $localMiddle . ']*[' . $local . '])*@[\da-zA-Z][-.\w]*[\da-zA-Z]\.[a-zA-Z]{2,7})>$/',
-				$content
-			) === 0)
+					'/^([^<]*)\s+<([' . $local . ']([' . $localMiddle . ']*[' . $local . '])*@[\da-zA-Z][-.\w]*[\da-zA-Z]\.[a-zA-Z]{2,7})>$/',
+					$content
+				) === 0)
 			{
 				$error = 'Content of the @author tag must be in the form "Display Name <username@example.com>"';
 				$phpcsFile->addError($error, $tag, 'InvalidAuthors');
@@ -507,12 +512,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Process the copyright tags.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   array                 $tags       The tokens for these tags.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   array                       $tags       The tokens for these tags.
 	 *
 	 * @return  void
 	 */
-	protected function processCopyright(PHP_CodeSniffer_File $phpcsFile, array $tags)
+	protected function processCopyright(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -556,12 +561,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Process the license tag.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   array                 $tags       The tokens for these tags.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   array                       $tags       The tokens for these tags.
 	 *
 	 * @return  void
 	 */
-	protected function processLicense(PHP_CodeSniffer_File $phpcsFile, array $tags)
+	protected function processLicense(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -588,12 +593,12 @@ class Kunena_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 	/**
 	 * Process the version tag.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   array                 $tags       The tokens for these tags.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   array                       $tags       The tokens for these tags.
 	 *
 	 * @return  void
 	 */
-	protected function processVersion(PHP_CodeSniffer_File $phpcsFile, array $tags)
+	protected function processVersion(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
 

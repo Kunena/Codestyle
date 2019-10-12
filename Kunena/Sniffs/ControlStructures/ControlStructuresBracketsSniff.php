@@ -6,6 +6,11 @@
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
+namespace Kunena\Sniffs\ControlStructures;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Control Structures Brackets Test.
@@ -15,7 +20,7 @@
  *
  * @since     1.0
  */
-class Kunena_Sniffs_ControlStructures_ControlStructuresBracketsSniff implements PHP_CodeSniffer_Sniff
+class ControlStructuresBracketsSniff implements Sniff
 {
 	/**
 	 * The number of spaces code should be indented.
@@ -33,29 +38,29 @@ class Kunena_Sniffs_ControlStructures_ControlStructuresBracketsSniff implements 
 	public function register()
 	{
 		return array(
-				T_IF,
-				T_ELSEIF,
-				T_ELSE,
-				T_FOREACH,
-				T_FOR,
-				T_SWITCH,
-				T_DO,
-				T_WHILE,
-				T_TRY,
-				T_CATCH,
-				T_FINALLY,
-			   );
+			T_IF,
+			T_ELSEIF,
+			T_ELSE,
+			T_FOREACH,
+			T_FOR,
+			T_SWITCH,
+			T_DO,
+			T_WHILE,
+			T_TRY,
+			T_CATCH,
+			T_FINALLY,
+		);
 	}
 
 	/**
 	 * Processes this test, when one of its tokens is encountered.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   int                   $stackPtr   The position of the current token in the stack passed in $tokens.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   int                         $stackPtr   The position of the current token in the stack passed in $tokens.
 	 *
 	 * @return  void
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens    = $phpcsFile->getTokens();
 		$errorData = array(strtolower($tokens[$stackPtr]['content']));
@@ -105,10 +110,10 @@ class Kunena_Sniffs_ControlStructures_ControlStructuresBracketsSniff implements 
 			{
 				$error = 'Opening brace of a %s must be on the line following the %s declaration.; Found %s line(s).';
 				$data  = array(
-						  $tokens[$stackPtr]['content'],
-						  $tokens[$stackPtr]['content'],
-						  ($braceLine - $controlStructureLine - 1),
-						 );
+					$tokens[$stackPtr]['content'],
+					$tokens[$stackPtr]['content'],
+					($braceLine - $controlStructureLine - 1),
+				);
 				$fix   = $phpcsFile->addFixableError($error, $openBrace, 'OpenBraceWrongLine', $data);
 
 				if ($fix === true)
@@ -173,16 +178,50 @@ class Kunena_Sniffs_ControlStructures_ControlStructuresBracketsSniff implements 
 				}
 			}
 
-			// Anonymous classes and functions set the indent at one plus their own indent level.
-			if ($phpcsFile->hasCondition($stackPtr, T_CLOSURE) === true
-				|| $phpcsFile->hasCondition($stackPtr, T_ANON_CLASS) === true)
+			$baseLevel = $tokens[$stackPtr]['level'];
+
+			/**
+			 * Take into account any nested parenthesis that don't contribute to the level (often required for
+			 * closures and anonymous classes
+			 */
+			if (array_key_exists('nested_parenthesis', $tokens[$stackPtr]) === true)
 			{
-				$expected = ($tokens[$stackPtr]['level'] + 1) * $this->indent;
+				$nestedStructures = $tokens[$stackPtr]['nested_parenthesis'];
+				$nestedCount = 0;
+
+				foreach ($nestedStructures as $start => $end)
+				{
+					/**
+					 * Crude way of checking for a chained method which requires an extra indent. We navigate to the open
+					 * parenthesis of the nested structure. The element before that is the function name. Before that we
+					 * check for an operator (->) and a whitespace before it (which makes it a chained method on a new line)
+					 * TODO: Is there a better way to check for a chained method? This feels very dirty!
+					 */
+					if ($tokens[$start - 2]['type'] === 'T_OBJECT_OPERATOR' && $tokens[$start - 3]['type'] === 'T_WHITESPACE')
+					{
+						/**
+						 * If we have an anonymous function/class on the same line as our chained method then we
+						 * balance out so only increase the count by 1. Else by 2.
+						 */
+						if ($tokens[$start + 1]['type'] === 'T_CLOSURE' || $tokens[$start + 1]['type'] === 'T_ANON_CLASS')
+						{
+							$nestedCount++;
+						}
+						else
+						{
+							$nestedCount += 2;
+						}
+					}
+					else
+					{
+						$nestedCount++;
+					}
+				}
+
+				$baseLevel += $nestedCount;
 			}
-			else
-			{
-				$expected = $tokens[$stackPtr]['level'] * $this->indent;
-			}
+
+			$expected = $baseLevel * $this->indent;
 
 			// We need to divide by 4 here since there is a space vs tab intent in the check vs token
 			$expected /= $this->indent;
@@ -192,9 +231,9 @@ class Kunena_Sniffs_ControlStructures_ControlStructuresBracketsSniff implements 
 			{
 				$error = 'Expected %s tabs before opening brace; %s found';
 				$data  = array(
-						  $expected,
-						  $spaces,
-						 );
+					$expected,
+					$spaces,
+				);
 				$fix   = $phpcsFile->addFixableError($error, $openBrace, 'SpaceBeforeBrace', $data);
 
 				if ($fix === true)
@@ -229,8 +268,8 @@ class Kunena_Sniffs_ControlStructures_ControlStructuresBracketsSniff implements 
 
 				// Skip all empty tokens on the same line as the opener.
 				if ($tokens[$next]['line'] === $tokens[$opener]['line']
-					&& (isset(PHP_CodeSniffer_Tokens::$emptyTokens[$code]) === true
-					|| $code === T_CLOSE_TAG)
+					&& (isset(Tokens::$emptyTokens[$code]) === true
+						|| $code === T_CLOSE_TAG)
 				)
 				{
 					continue;

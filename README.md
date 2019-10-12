@@ -1,2 +1,2 @@
 # Codestyle
-Kunena codestyle for phpcs-2
+Kunena codestyle for phpcs-3

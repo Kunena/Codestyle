@@ -20,7 +20,6 @@
 	<!-- Include all sniffs in an external standard directory -->
 
 	<!-- Include some additional sniffs from the Generic standard -->
-	<rule ref="Generic.Arrays.DisallowShortArraySyntax" />
 	<rule ref="Generic.ControlStructures.InlineControlStructure" />
 	<rule ref="Generic.Files.EndFileNewline" />
 
@@ -167,7 +166,7 @@
 		<exclude name="Squiz.Operators.IncrementDecrementUsage.processAssignment" />
 	</rule>
 	<rule ref="Squiz.PHP.GlobalKeyword">
-		<exclude name="Squiz.PHP.GlobalKeyword.NotAllowed" />
+		<message>Do not use global variables. Use static class properties or constants instead of globals.</message>
 	</rule>
 	<rule ref="Squiz.Scope.StaticThisUsage" />
 	<rule ref="Squiz.Scope.MemberVarScope" />
@@ -190,6 +189,11 @@
 	<rule ref="Squiz.WhiteSpace.CastSpacing" />
 	<rule ref="Squiz.WhiteSpace.ControlStructureSpacing">
 		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.LineAfterClose" />
+	</rule>
+	<rule ref="Squiz.WhiteSpace.MemberVarSpacing">
+		<properties>
+			<property name="spacingBeforeFirst" value="0" />
+		</properties>
 	</rule>
 	<rule ref="Squiz.WhiteSpace.OperatorSpacing">
 		<properties>

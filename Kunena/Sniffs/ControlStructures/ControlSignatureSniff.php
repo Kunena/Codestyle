@@ -6,6 +6,11 @@
  * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
+namespace Kunena\Sniffs\ControlStructures;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Verifies that control statements conform to their coding standards.
@@ -19,7 +24,7 @@
  *
  * @since   1.0
  */
-class Kunena_Sniffs_ControlStructures_ControlSignatureSniff implements PHP_CodeSniffer_Sniff
+class ControlSignatureSniff implements Sniff
 {
 	/**
 	 * The number of spaces code should be indented.
@@ -34,9 +39,9 @@ class Kunena_Sniffs_ControlStructures_ControlSignatureSniff implements PHP_CodeS
 	 * @var array
 	 */
 	public $supportedTokenizers = array(
-								   'PHP',
-								   'JS',
-								  );
+		'PHP',
+		'JS',
+	);
 
 	/**
 	 * Returns an array of tokens this test wants to listen for.
@@ -46,29 +51,29 @@ class Kunena_Sniffs_ControlStructures_ControlSignatureSniff implements PHP_CodeS
 	public function register()
 	{
 		return array(
-				T_TRY,
-				T_CATCH,
-				T_FINALLY,
-				T_DO,
-				T_WHILE,
-				T_FOR,
-				T_FOREACH,
-				T_IF,
-				T_ELSE,
-				T_ELSEIF,
-				T_SWITCH,
-			   );
+			T_TRY,
+			T_CATCH,
+			T_FINALLY,
+			T_DO,
+			T_WHILE,
+			T_FOR,
+			T_FOREACH,
+			T_IF,
+			T_ELSE,
+			T_ELSEIF,
+			T_SWITCH,
+		);
 	}
 
 	/**
 	 * Processes this test, when one of its tokens is encountered.
 	 *
-	 * @param   PHP_CodeSniffer_File  $phpcsFile  The file being scanned.
-	 * @param   int                   $stackPtr   The position of the current token in the stack passed in $tokens.
+	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
+	 * @param   int                         $stackPtr   The position of the current token in the stack passed in $tokens.
 	 *
 	 * @return  void
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens = $phpcsFile->getTokens();
 
@@ -105,9 +110,9 @@ class Kunena_Sniffs_ControlStructures_ControlSignatureSniff implements PHP_CodeS
 		{
 			$error = 'Expected 1 space after %s keyword; %s found';
 			$data  = array(
-					  strtoupper($tokens[$stackPtr]['content']),
-					  $found,
-					 );
+				strtoupper($tokens[$stackPtr]['content']),
+				$found,
+			);
 			$fix   = $phpcsFile->addFixableError($error, $stackPtr, 'SpaceAfterKeyword', $data);
 
 			if ($fix === true)
@@ -169,7 +174,7 @@ class Kunena_Sniffs_ControlStructures_ControlSignatureSniff implements PHP_CodeS
 			|| $tokens[$stackPtr]['code'] === T_CATCH
 		)
 		{
-			$closer = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$emptyTokens, ($stackPtr - 1), null, true);
+			$closer = $phpcsFile->findPrevious(Tokens::$emptyTokens, ($stackPtr - 1), null, true);
 
 			if ($closer === false || $tokens[$closer]['code'] !== T_CLOSE_CURLY_BRACKET)
 			{
