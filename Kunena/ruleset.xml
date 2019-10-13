@@ -49,7 +49,7 @@
 	<rule ref="Generic.Files.LineLength">
 		<properties>
 			<property name="lineLimit" value="150" />
-			<property name="absoluteLineLimit" value="0" />
+			<property name="absoluteLineLimit" value="200" />
 		</properties>
 	</rule>
 
