@@ -4,5 +4,6 @@
   "license": "GPL-3.0-or-later",
   "require": {
     "php": ">=7.4.0"
-  }
+  },
+  "type" : "phpcodesniffer-standard"
 }
