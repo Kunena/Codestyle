@@ -30,9 +30,6 @@ class MyClass
 
 class MyClass
 {
-
-
-
 	/**
 	 * Var description.
 	 *
