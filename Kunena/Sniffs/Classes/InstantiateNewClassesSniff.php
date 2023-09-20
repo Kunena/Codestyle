@@ -27,14 +27,14 @@ class InstantiateNewClassesSniff implements Sniff
 		return array(T_NEW);
 	}
 
-	/**
-	 * Process the tokens that this sniff is listening for.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file where the token was found.
-	 * @param   integer                     $stackPtr   The position in the stack where the token was found.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the tokens that this sniff is listening for.
+     *
+     * @param File $phpcsFile The file where the token was found.
+     * @param integer $stackPtr The position in the stack where the token was found.
+     *
+     * @return  void
+     */
 	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -103,7 +103,7 @@ class InstantiateNewClassesSniff implements Sniff
 
 		if ($valid === false)
 		{
-			$error = 'Instanciating new class without parameters does not require brackets.';
+			$error = 'Instantiating new class without parameters does not require brackets.';
 			$fix   = $phpcsFile->addFixableError($error, $stackPtr, 'NewClass');
 
 			if ($fix === true)

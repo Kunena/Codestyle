@@ -7,13 +7,13 @@ Go to Preferences->PHP->Code style->Formatter and Import ```eclipse_pdt3_formatt
 
 ### PHPStorm 
 1. Copy the file ```joomla_phpstorm.xml``` to:
- 	- Mac ```~/Library/Preferences/<PRODUCT><VERSION>/codestyles/Joomla.xml```
+	- Mac ```~/Library/Preferences/<PRODUCT><VERSION>/codestyles/Joomla.xml```
  	- Windows ```<User home>\.<PRODUCT><VERSION>\config\codestyles\Joomla.xml```
  	- Linux ```~/.<PRODUCT><VERSION>/config/codestyles/Joomla.xml```
 2. Restart PHPStorm
 3. Open settings
-  - Editor > Code Style
-  - Manage the scheme and select *Joomla* > *Copy to Project*
+   - Editor > Code Style
+   - Manage the scheme and select *Joomla* > *Copy to Project*
 4. Change the *Scheme* to *Joomla*
 
 ### References

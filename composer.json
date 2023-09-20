@@ -3,7 +3,7 @@
   "description": "Kunena forum codestyle for joomla",
   "license": "GPL-3.0-or-later",
   "require": {
-    "php": ">=7.4.0"
+    "php": ">=8.1.0"
   },
   "type" : "phpcodesniffer-standard"
 }

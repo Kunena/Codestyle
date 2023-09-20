@@ -124,14 +124,14 @@ class FileCommentSniff implements Sniff
 		return array(T_OPEN_TAG);
 	}//end register()
 
-	/**
-	 * Processes this test, when one of its tokens is encountered.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   int                         $stackPtr   The position of the current token in the stack passed in $tokens.
-	 *
-	 * @return  integer
-	 */
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param int $stackPtr The position of the current token in the stack passed in $tokens.
+     *
+     * @return  integer
+     */
 	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -201,16 +201,16 @@ class FileCommentSniff implements Sniff
 		return ($phpcsFile->numTokens + 1);
 	}//end process()
 
-	/**
-	 * Processes each required or optional tag.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
-	 * @param   int                        $stackPtr     The position of the current token
-	 *                                                   in the stack passed in $tokens.
-	 * @param   int                        $commentStart Position in the stack where the comment started.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Processes each required or optional tag.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param int $stackPtr The position of the current token
+     *                                                   in the stack passed in $tokens.
+     * @param int $commentStart Position in the stack where the comment started.
+     *
+     * @return  void
+     */
 	protected function processTags(File $phpcsFile, $stackPtr, $commentStart)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -259,7 +259,6 @@ class FileCommentSniff implements Sniff
 					$docBlock,
 				);
 				$phpcsFile->addError($error, $tag, 'Empty' . ucfirst(substr($name, 1)) . 'Tag', $data);
-				continue;
 			}
 		}//end foreach
 
@@ -331,14 +330,14 @@ class FileCommentSniff implements Sniff
 		}//end foreach
 	}//end processTags()
 
-	/**
-	 * Process the category tag.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   array                       $tags       The tokens for these tags.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the category tag.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param array $tags The tokens for these tags.
+     *
+     * @return  void
+     */
 	protected function processCategory(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -379,14 +378,14 @@ class FileCommentSniff implements Sniff
 		}//end foreach
 	}//end processCategory()
 
-	/**
-	 * Process the package tag.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   array                       $tags       The tokens for these tags.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the package tag.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param array $tags The tokens for these tags.
+     *
+     * @return  void
+     */
 	protected function processPackage(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -441,14 +440,14 @@ class FileCommentSniff implements Sniff
 		}//end foreach
 	}//end processPackage()
 
-	/**
-	 * Process the subpackage tag.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   array                       $tags       The tokens for these tags.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the subpackage tag.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param array $tags The tokens for these tags.
+     *
+     * @return  void
+     */
 	protected function processSubpackage(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -472,14 +471,14 @@ class FileCommentSniff implements Sniff
 		}//end foreach
 	}//end processSubpackage()
 
-	/**
-	 * Process the author tag(s) that this header comment has.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   array                       $tags       The tokens for these tags.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the author tag(s) that this header comment has.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param array $tags The tokens for these tags.
+     *
+     * @return  void
+     */
 	protected function processAuthor(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -509,14 +508,14 @@ class FileCommentSniff implements Sniff
 		}
 	}//end processAuthor()
 
-	/**
-	 * Process the copyright tags.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   array                       $tags       The tokens for these tags.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the copyright tags.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param array $tags The tokens for these tags.
+     *
+     * @return  void
+     */
 	protected function processCopyright(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -558,14 +557,14 @@ class FileCommentSniff implements Sniff
 		}//end foreach
 	}//end processCopyright()
 
-	/**
-	 * Process the license tag.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   array                       $tags       The tokens for these tags.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the license tag.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param array $tags The tokens for these tags.
+     *
+     * @return  void
+     */
 	protected function processLicense(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -590,14 +589,14 @@ class FileCommentSniff implements Sniff
 		}
 	}//end processLicense()
 
-	/**
-	 * Process the version tag.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   array                       $tags       The tokens for these tags.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Process the version tag.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param array $tags The tokens for these tags.
+     *
+     * @return  void
+     */
 	protected function processVersion(File $phpcsFile, array $tags)
 	{
 		$tokens = $phpcsFile->getTokens();

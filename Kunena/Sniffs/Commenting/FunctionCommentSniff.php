@@ -20,20 +20,18 @@ use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FunctionCommentSniff as PEA
  */
 class FunctionCommentSniff extends PEARFunctionCommentSniff
 {
-	/**
-	 * Process the return comment of this function comment.
-	 *
-	 * Extends PEAR.Commenting.FunctionComment.processReturn to exclude @return tag requirements for constructors and destructors and
-	 * to enforce alignment of the doc blocks.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile     The file being scanned.
-	 * @param   integer                     $stackPtr      The position of the current token in the stack passed in $tokens.
-	 * @param   integer                     $commentStart  The position in the stack where the comment started.
-	 *
-	 * @return  void
-	 *
-	 * @todo    Reinstate the check on the alignment of the tag
-	 */
+    /**
+     * Process the return comment of this function comment.
+     *
+     * Extends PEAR.Commenting.FunctionComment.processReturn to exclude
+     * @param File $phpcsFile The file being scanned.
+     * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
+     * @param integer $commentStart The position in the stack where the comment started.
+     *
+     * to enforce alignment of the doc blocks.
+     * @todo    Reinstate the check on the alignment of the tag
+     * @noinspection DuplicatedCode
+     */
 	protected function processReturn(File $phpcsFile, $stackPtr, $commentStart)
 	{
 		$tokens = $phpcsFile->getTokens();
@@ -228,20 +226,20 @@ class FunctionCommentSniff extends PEARFunctionCommentSniff
 		}
 	}
 
-	/**
-	 * Process the function parameter comments.
-	 *
-	 * Extends PEAR.Commenting.FunctionComment.processReturn to enforce correct alignment of the doc block.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File $phpcsFile     The file being scanned.
-	 * @param   integer                    $stackPtr      The position of the current token in the stack passed in $tokens.
-	 * @param   integer                    $commentStart  The position in the stack where the comment started.
-	 *
-	 * @return  void
-	 *
-	 * @todo    Reinstate the check that params come after the function's comment and has a blank line before them
-	 * @todo    Reinstate the check that there is a blank line after all params are declared
-	 */
+    /**
+     * Process the function parameter comments.
+     *
+     * Extends PEAR.Commenting.FunctionComment.processReturn to enforce correct alignment of the doc block.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
+     * @param integer $commentStart The position in the stack where the comment started.
+     *
+     * @return  void
+     *
+     * @todo    Reinstate the check that params come after the function's comment and has a blank line before them
+     * @todo    Reinstate the check that there is a blank line after all params are declared
+     */
 	protected function processParams(File $phpcsFile, $stackPtr, $commentStart)
 	{
 		$tokens = $phpcsFile->getTokens();

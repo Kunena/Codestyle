@@ -52,14 +52,14 @@ class ControlStructuresBracketsSniff implements Sniff
 		);
 	}
 
-	/**
-	 * Processes this test, when one of its tokens is encountered.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   int                         $stackPtr   The position of the current token in the stack passed in $tokens.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Processes this test, when one of its tokens is encountered.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param int $stackPtr The position of the current token in the stack passed in $tokens.
+     *
+     * @return  void
+     */
 	public function process(File $phpcsFile, $stackPtr)
 	{
 		$tokens    = $phpcsFile->getTokens();
@@ -162,7 +162,7 @@ class ControlStructuresBracketsSniff implements Sniff
 				$spaces = 0;
 
 				/**
-				 * A tab is only counted with strlen as 1 character but we want to count
+				 * A tab is only counted with strlen as 1 character, but we want to count
 				 * the number of spaces so add 4 characters for a tab otherwise the strlen
 				 */
 				for ($i = 0; $length = strlen($blankSpace), $i < $length; $i++)

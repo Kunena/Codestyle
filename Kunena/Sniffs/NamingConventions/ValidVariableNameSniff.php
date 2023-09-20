@@ -20,17 +20,17 @@ use PHP_CodeSniffer\Standards\Squiz\Sniffs\NamingConventions\ValidVariableNameSn
  */
 class ValidVariableNameSniff extends SquizValidVariableNameSniff
 {
-	/**
-	 * Processes class member variables.
-	 *
-	 * Extends Squiz.NamingConventions.ValidVariableName.processMemberVar to remove the requirement for leading underscores on
-	 * private member vars.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File  $phpcsFile  The file being scanned.
-	 * @param   integer                     $stackPtr   The position of the current token in the stack passed in $tokens.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Processes class member variables.
+     *
+     * Extends Squiz.NamingConventions.ValidVariableName.processMemberVar to remove the requirement for leading underscores on
+     * private member vars.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param integer $stackPtr The position of the current token in the stack passed in $tokens.
+     *
+     * @return  void
+     */
 	protected function processMemberVar(File $phpcsFile, $stackPtr)
 	{
 		$tokens = $phpcsFile->getTokens();

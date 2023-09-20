@@ -20,18 +20,18 @@ use PHP_CodeSniffer\Standards\PEAR\Sniffs\NamingConventions\ValidFunctionNameSni
  */
 class ValidFunctionNameSniff extends PEARValidFunctionNameSniff
 {
-	/**
-	 * Processes the tokens within the scope.
-	 *
-	 * Extends PEAR.NamingConventions.ValidFunctionName.processTokenWithinScope to remove the requirement for leading underscores on
-	 * private method names.
-	 *
-	 * @param   PHP_CodeSniffer\Files\File $phpcsFile  The file being processed.
-	 * @param   integer                    $stackPtr   The position where this token was found.
-	 * @param   integer                    $currScope  The position of the current scope.
-	 *
-	 * @return  void
-	 */
+    /**
+     * Processes the tokens within the scope.
+     *
+     * Extends PEAR.NamingConventions.ValidFunctionName.processTokenWithinScope to remove the requirement for leading underscores on
+     * private method names.
+     *
+     * @param File $phpcsFile The file being processed.
+     * @param integer $stackPtr The position where this token was found.
+     * @param integer $currScope The position of the current scope.
+     *
+     * @return  void
+     */
 	protected function processTokenWithinScope(File $phpcsFile, $stackPtr, $currScope)
 	{
 		$methodName = $phpcsFile->getDeclarationName($stackPtr);
@@ -127,8 +127,6 @@ class ValidFunctionNameSniff extends PEARValidFunctionNameSniff
 				$error = 'Method name "%s" is not in camel caps format';
 				$phpcsFile->addError($error, $stackPtr, 'NotCamelCaps', $errorData);
 			}
-
-			return;
-		}
+        }
 	}
 }

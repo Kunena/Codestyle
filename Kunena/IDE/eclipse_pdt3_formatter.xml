@@ -184,7 +184,7 @@
 <setting id="org.eclipse.php.formatter.core.formatter.join_lines_in_comments" value="true"/>
 <setting id="org.eclipse.php.formatter.core.formatter.keep_else_statement_on_same_line" value="false"/>
 <setting id="org.eclipse.php.formatter.core.formatter.keep_elseif_statement_on_same_line" value="true"/>
-<setting id="org.eclipse.php.formatter.core.formatter.keep_imple_if_on_one_line" value="false"/>
+<setting id="org.eclipse.php.formatter.core.formatter.keep_simple_if_on_one_line" value="false"/>
 <setting id="org.eclipse.php.formatter.core.formatter.keep_then_statement_on_same_line" value="false"/>
 <setting id="org.eclipse.php.formatter.core.formatter.lineSplit" value="150"/>
 <setting id="org.eclipse.php.formatter.core.formatter.never_indent_block_comments_on_first_column" value="false"/>
