@@ -142,12 +142,6 @@
 	</rule>
 
 	<!-- Include some additional sniffs from the Squiz standard -->
-	<rule ref="Squiz.CSS.ColonSpacing" />
-	<rule ref="Squiz.CSS.DuplicateClassDefinition" />
-	<rule ref="Squiz.CSS.EmptyClassDefinition" />
-	<rule ref="Squiz.CSS.EmptyStyleDefinition" />
-	<rule ref="Squiz.CSS.MissingColon" />
-	<rule ref="Squiz.CSS.SemicolonSpacing" />
 	<rule ref="Squiz.Classes.SelfMemberReference" />
 	<rule ref="Squiz.Commenting.BlockComment">
 		<exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
